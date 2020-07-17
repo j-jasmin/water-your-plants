@@ -13,7 +13,7 @@ before_install:
 addons:
   postgresql: '12.2'
 before_script:
-  - psql -c 'create database water_your_plants_test;' -U postgres
+  - psql -c 'create database water-your-plants_test;' -U postgres
 script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
