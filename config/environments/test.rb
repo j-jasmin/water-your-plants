@@ -43,7 +43,9 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  config.active_record.maintain_test_schema = false
+  config.active_record.maintain_test_schema = true
+
+  DatabaseCleaner.allow_remote_database_url = true
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
