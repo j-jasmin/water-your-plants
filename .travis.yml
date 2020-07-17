@@ -5,6 +5,7 @@ cache:
   bundler: true
   yarn: true
 services:
+  - postgresql
   - redis-server
 sudo: required
 before_install:
@@ -13,13 +14,11 @@ before_install:
 addons:
   postgresql: '12.2'
 before_script:
-  - psql -c 'create database water-your-plants_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
 script:
-  - bundle exec rake db:schema:load
-  - bundle exec rake db:test:prepare
-  - SECRET_KEY_BASE=a RAILS_ENV=production bundle exec rake assets:precompile
-  - bundle exec rake test
-  - bundle exec rake test:system
+  - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
+  - bundle exec rspec
+  - bundle exec rubocop --config .rubocop.yml
 deploy:
   provider: heroku
   api_key:
