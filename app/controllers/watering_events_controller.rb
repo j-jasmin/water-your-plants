@@ -1,0 +1,2 @@
+class WateringEventsController < ApplicationController
+end

@@ -1,9 +1,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'spec_helper'
 require File.expand_path('../config/environment', __dir__)
-
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+require 'spec_helper'
 require 'rspec/rails'
 require 'database_cleaner'
 require 'capybara/rspec'
@@ -12,12 +10,15 @@ require 'factory_bot_rails'
 
 require_relative 'support/controller_macros'
 
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
@@ -27,7 +28,16 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers
 
-  #config.extend ControllerMacros, type: :controller
+  Capybara.server = :puma # Until your setup is working
+  Capybara.server = :puma, { Silent: true } # To clean up your test output
+
+  Capybara.register_driver :headless_chrome do |app|
+    options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu window-size=1400,900])
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
+
+  Capybara.save_path = Rails.root.join('tmp/capybara')
+  Capybara.javascript_driver = :headless_chrome
 
   config.infer_spec_type_from_file_location!
 

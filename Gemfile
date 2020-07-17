@@ -63,6 +63,7 @@ group :test do
   gem 'webdrivers'
   gem 'database_cleaner'
   gem 'factory_bot_rails', require: false
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
