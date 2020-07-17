@@ -1,10 +1,13 @@
 language: ruby
 rvm:
-  - 2.6.6
+- 2.6.6
 cache: bundler
 services:
-  - postgresql
+- postgresql
 before_script:
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
+- bundle exec rake db:create
+- bundle exec rake db:migrate
 script: bundle exec rspec
+deploy:
+  api_key:
+    secure: Vlh5+sqKT3Kg/WtqAM9LeH1bvpopC82vViFHE992YKCEBcBxPPefSdd8Hv/SZyCsyJkOZaA+X7aYFbRkeWaGfA/ONbxdiHUW9ZT/9L6y+xhKRLSb2dlWlx9BMCRJcvIgmrQdVPdVIqpJzX0HbbaP+xWHTFyEL7+zOzGImrLkxKntHOu/4bGestH5JBXIPBuqbWn7/7Hj8N2pNOi5uxDIAFslyKDN1oMsGKKP0fhf0CvkmLY8vSopM0iZ77iIdgiY0T1GnlNNSUI7YoY4D+LNxcWJhQ1pQjLm5qe8AL2/FWsW49w5Zuf81EkSIcwb7NVWgVipK1TNS+8Nq9JWcIgyA0Up0EujFiuBppBU7Lyo9Uy/PQocIC6o1wmMugj8sMW2Uj8Sub6uftThrW71K4GXg0AZ7A7wbl4Jxtg/xbcI7/+d/OcKZtq3qeiqj1fxnQyjc2hQ9vWmv5gGKFTOqMqYpw5qbASL5Sn9schSQhP4O0DXtjOC5FO4CcznVAmy1f1Kb32HZj0bdFAgmF08ET8M+jkhUYk9d8Hrn2i8yRjd4V5Jzt2JStt6rP/1D8+EinXuLEgCuVcW63/FoTsF93VbWoEsStQzYMuDyQV9k5PgWfKdtBzhSWQGYjZlry2cs7VNnyjT9W0G1DfXrv+9d+p6eSn08uCuQJ3uzI97JD2hPgg=
