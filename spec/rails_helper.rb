@@ -7,6 +7,10 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'database_cleaner'
 require 'capybara/rspec'
+require 'devise'
+require 'factory_bot_rails'
+
+require_relative 'support/controller_macros'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -15,10 +19,18 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
   config.use_transactional_fixtures = false
+
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Warden::Test::Helpers
+
+  #config.extend ControllerMacros, type: :controller
+
   config.infer_spec_type_from_file_location!
+
   config.filter_rails_from_backtrace!
 
   config.before(:suite) do

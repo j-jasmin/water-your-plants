@@ -1,12 +1,13 @@
 language: ruby
 rvm:
-- 2.6.6
+  - 2.6.6
 cache: bundler
 services:
-- postgresql
+  - postgresql
 before_script:
-- bundle exec rake db:create
-- bundle exec rake db:migrate
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  # - bundle exec rake assets:precompile
 script: bundle exec rspec
 deploy:
   provider: heroku
