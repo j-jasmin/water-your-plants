@@ -6,22 +6,26 @@ cache:
   yarn: true
 services:
   - postgresql
-  - elasticsearch
-  - redis-server
-sudo: required
 before_install:
   - sudo apt-get update
   - sudo apt-get install google-chrome-stable
 addons:
   postgresql: '12.2'
+    apt:
+    packages:
+      - postgresql-12
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes remove postgresql\*
+  - sudo apt-get install -y postgresql-12 postgresql-client-12
+  - sudo cp /etc/postgresql/{9.6,12}/main/pg_hba.conf
+  - sudo service postgresql restart 12
 before_script:
-  - sleep 10
+  - psql --version
+  - psql -c 'CREATE DATABASE {{water_your_plants_test}};' -U postgres
+  - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
   - cp config/database.yml.travis config/database.yml
-script:
-  - bundle exec rake db:schema:load
-  - bundle exec rake db:test:prepare
-  - SECRET_KEY_BASE=a RAILS_ENV=production bundle exec rake assets:precompile
-  - bundle exec rspec
+script: bundle exec rake spec
 deploy:
   provider: heroku
   api_key:
