@@ -18,7 +18,9 @@ before_script:
   - sleep 10
   - cp config/database.yml.travis config/database.yml
 script:
-  - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:test:prepare
+  - SECRET_KEY_BASE=a RAILS_ENV=production bundle exec rake assets:precompile
   - bundle exec rspec
 deploy:
   provider: heroku
