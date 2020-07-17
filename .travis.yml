@@ -25,7 +25,8 @@ before_script:
   - psql -c 'CREATE DATABASE {{water_your_plants_test}};' -U postgres
   - psql -c 'CREATE ROLE travis SUPERUSER LOGIN CREATEDB;' -U postgres
   - cp config/database.yml.travis config/database.yml
-script: bundle exec rake spec
+script:
+  - bundle exec rake spec
 deploy:
   provider: heroku
   api_key:
