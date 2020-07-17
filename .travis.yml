@@ -1,7 +1,6 @@
 language: ruby
 rvm:
  - 2.6.6
- - jruby
 
 deploy:
   provider: heroku
