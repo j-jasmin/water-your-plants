@@ -6,6 +6,7 @@ cache:
   yarn: true
 services:
   - postgresql
+  - elasticsearch
   - redis-server
 sudo: required
 before_install:
@@ -14,6 +15,8 @@ before_install:
 addons:
   postgresql: '12.2'
 before_script:
+  - sleep 10
+  - psql -c 'create database water_your_plants_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
 script:
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
