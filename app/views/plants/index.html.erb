@@ -1,11 +1,13 @@
-<% @plants.each do |plant| %>
-  <%= link_to plant_path(plant) do %>
-    <p><%= plant.name %></p>
-    <p><%= plant.nickname %></p>
-    <p><%= plant.description %></p>
-    <p><%= plant.watering_intervall %></p>
+<div class="container">
+  <% @plants.each do |plant| %>
+    <%= link_to plant_path(plant) do %>
+      <p><%= plant.name %></p>
+      <p><%= plant.nickname %></p>
+      <p><%= plant.description %></p>
+      <p><%= plant.watering_intervall %></p>
+    <% end %>
   <% end %>
-<% end %>
 
 
-<p><%= link_to "Add plant", new_plant_path %></p>
+  <p><%= link_to "Add plant", new_plant_path %></p>
+</div>
