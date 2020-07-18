@@ -48,6 +48,7 @@ Rails.application.configure do
   DatabaseCleaner.allow_remote_database_url = true
 
   config.assets.compile = true
+  config.assets.digest = true
   #config.assets.debug = true
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
