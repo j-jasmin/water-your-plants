@@ -7,6 +7,7 @@ RSpec.describe 'Creating a plant', type: :feature do
     fill_in 'plant[name]', with: 'Monstera', visible: false
     click_on 'Create Plant'
     visit plants_path
+    save_and_open_page
     expect(page).to have_content('Monstera')
   end
 end

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root to: 'plants#index'
 
   resources :plants do
-    resources :watering_events, only: [:index, :new, :create]
+    resources :watering_events, only: [ :index, :new, :create ]
   end
 end
