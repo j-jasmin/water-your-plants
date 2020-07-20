@@ -1,5 +1,5 @@
 class PlantsController < ApplicationController
-  before_action :set_plant, only: :show
+  before_action :set_plant, only: [:show, :destroy]
 
   def index
     @plants = Plant.where(user: current_user)
@@ -12,13 +12,17 @@ class PlantsController < ApplicationController
   end
 
   def create
-    @plant = Plant.new(plant_params)
-    @plant.user = current_user
-    if @plant.save
+    plant = Plant.new(plant_params)
+    plant.user = current_user
+    if plant.save
       redirect_to root_path
     else
       render :new
     end
+  end
+
+  def destroy
+    redirect_to root_path if @plant.destroy
   end
 
   private
@@ -28,6 +32,6 @@ class PlantsController < ApplicationController
   end
 
   def plant_params
-    params.require(:plant).permit(:name)
+    params.require(:plant).permit(:common_name, :scientific_name, :nickname, :watering_interval, :photo)
   end
 end

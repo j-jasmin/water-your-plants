@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
 
   it "should destroy child plants and watering_events when destroying self" do
     user = User.create!(email: "test@test.com", password: "123456")
-    plant = Plant.create!(name: "Monstera", user: user)
+    plant = Plant.create!(common_name: "Monstera", user: user)
     expect { user.destroy }.to change { user.plants.count }.from(1).to(0)
   end
 end

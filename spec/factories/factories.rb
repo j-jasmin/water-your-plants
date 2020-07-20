@@ -6,6 +6,6 @@ FactoryBot.define do
 
   factory :plant do
     user
-    name { "Monstera" }
+    common_name { "Monstera" }
   end
 end

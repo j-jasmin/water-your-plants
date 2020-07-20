@@ -1,13 +1,15 @@
 <div class="container">
   <% @plants.each do |plant| %>
     <%= link_to plant_path(plant) do %>
-      <p><%= plant.name %></p>
-      <p><%= plant.nickname %></p>
-      <p><%= plant.description %></p>
-      <p><%= plant.watering_intervall %></p>
+    <% if plant.photo.attached? %>
+        <%= cl_image_tag plant.photo.key, height: 240, width: 200, crop: :fill %>
+    <% end %>
+    <p>Common name: <%= plant.common_name %></p>
+    <% unless plant.watering_events.blank? %>
+      <p>Last watered: <%= plant.watering_events.sort{|a,b| b.date <=> a.date}[0][:date].to_date.to_formatted_s(:long) %></p>
     <% end %>
   <% end %>
-
+  <% end %>
 
   <p><%= link_to "Add plant", new_plant_path %></p>
 </div>

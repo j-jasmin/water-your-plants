@@ -4,7 +4,7 @@ class CreatePlants < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :nickname
       t.string :description
-      t.time :watering_intervall
+      t.integer :watering_interval
 
       t.timestamps
     end
