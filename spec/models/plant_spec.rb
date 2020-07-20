@@ -28,9 +28,9 @@ RSpec.describe Plant, type: :model do
     expect(plant.description).to eq("easy going")
   end
 
-  it "has a watering_intervall" do
+  it "has a watering_interval" do
     plant = Plant.new(watering_interval: "497584")
-    expect(plant.watering_intervall).to eq("497584")
+    expect(plant.watering_interval).to eq("497584")
   end
 
   it "common name can not be blank" do

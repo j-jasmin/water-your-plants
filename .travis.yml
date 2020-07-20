@@ -8,11 +8,11 @@ before_script:
   - bundle exec rake db:create
   - bundle exec rake db:migrate
   #- bundle exec rake assets:precompile
-install: 
+install:
   - bundle install
-  - nvm install node v12.3.1
-  - node -v
-  - npm install yarn -g
+  # - nvm install node v12.3.1
+  # - node -v
+  # - npm install yarn -g
   - yarn install
 script: bundle exec rspec
 deploy:

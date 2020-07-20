@@ -7,5 +7,13 @@ FactoryBot.define do
   factory :plant do
     user
     common_name { "Monstera" }
+    nickname { "Monsti" }
+    scientific_name { "Monstera deliciosa" }
+    watering_interval { 10 }
+  end
+
+  factory :watering_event do
+    plant
+    date { Date.today - rand(1..30) }
   end
 end
