@@ -21,4 +21,11 @@ RSpec.describe PlantsController, type: :controller do
       expect(response.content_type).to eq "text/html; charset=utf-8"
     end
   end
+
+   describe "GET new" do
+    it "renders template :new" do
+      get :new
+      expect(response).to render_template(:new)
+    end
+  end
 end

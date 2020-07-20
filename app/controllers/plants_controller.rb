@@ -5,7 +5,9 @@ class PlantsController < ApplicationController
     @plants = Plant.where(user: current_user)
   end
 
-  def show; end
+  def show
+    @watering_event = WateringEvent.new
+  end
 
   def new
     @plant = Plant.new
