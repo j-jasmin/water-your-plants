@@ -15,7 +15,7 @@
 #   - npm install yarn -g
 #   - yarn install
 # script: bundle exec rspec
-
+sudo: required
 language: ruby
 
 services:
