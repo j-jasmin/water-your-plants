@@ -16,22 +16,21 @@
 #   - yarn install
 # script: bundle exec rspec
 sudo: required
-language: ruby
 
+language: ruby
+rvm:
+  - 2.6.6
 services:
   - docker
-
-before_install:
-- docker pull jasminj000/water-your-plants
-- docker run -d -p 127.0.0.1:80:4567 jasminj000/water-your-plants /bin/sh -c "cd /root/water-your-plants; bundle exec foreman start;"
-- docker ps -a
-- docker run jasminj000/water-your-plants /bin/sh -c "cd /root/water-your-plants; bundle exec rspec"
 before_script:
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate
-  #- bundle exec rake assets:precompile
+  - docker-compuse up --build -d
+  - docker exec -it water-your-plants_web
+  - docker exec rake db:setup
 script:
-- bundle exec rspec
+  - docker bundle exec rspec
+after_script:
+  - docker-compose down
+  - docker images
 deploy:
   provider: heroku
   api_key:
