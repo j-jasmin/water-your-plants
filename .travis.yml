@@ -22,8 +22,9 @@ rvm:
   - 2.6.6
 services:
   - docker
+install: skip
 before_script:
-  - docker-compuse up --build -d
+  - docker-compose up --build -d
   - docker exec -it water-your-plants_web
   - docker exec rake db:setup
 script:
