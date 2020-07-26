@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password
 
-  webpacker:
+  webpack:
     build: .
     command: ./bin/webpack-dev-server
     volumes:
@@ -21,7 +21,7 @@ services:
       - "RAILS_ENV_development"
       - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
 
-  web:
+  app:
     build: .
     volumes:
       - .:/app
@@ -29,7 +29,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - webpacker
+      - webpack
     environment:
-      WEBPACKER_DEV_SERVER_HOST: webpacker
+      WEBPACKER_DEV_SERVER_HOST: webpack
       PG_PASSWORD: password

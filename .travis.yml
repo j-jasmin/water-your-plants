@@ -24,8 +24,8 @@ services:
   - docker
 install: skip
 before_script:
-  - docker-compose up --build -d
-  - docker exec -it water-your-plants_web:latest bash
+  - docker pull jasminj000/water-your-plants_web:latest
+  - docker exec -it water-your-plants_web_1 bash
   - docker exec rake db:setup
 script:
   - docker bundle exec rspec
