@@ -24,7 +24,7 @@ services:
   - docker
 install: skip
 before_script:
-  - docker pull jasminj000/water-your-plants_web:latest
+  - docker pull jasminj000/water-your-plants:latest
   - docker exec -it water-your-plants_web_1 bash
   - docker exec rake db:setup
 script:
