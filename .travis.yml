@@ -25,7 +25,7 @@ services:
 install: skip
 before_script:
   - docker-compose up --build -d
-  - docker exec -it water-your-plants_web
+  - docker exec -it water-your-plants_web bash
   - docker exec rake db:setup
 script:
   - docker bundle exec rspec
