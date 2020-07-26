@@ -22,7 +22,7 @@ RSpec.describe PlantsController, type: :controller do
     end
   end
 
-   describe "GET new" do
+  describe "GET new" do
     it "renders template :new" do
       get :new
       expect(response).to render_template(:new)

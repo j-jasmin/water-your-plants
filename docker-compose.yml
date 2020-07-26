@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+
+  webpacker:
+    build: .
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/app
+    ports:
+      - '3035:3035'
+    environment:
+      - "NODE_ENV:development"
+      - "RAILS_ENV_development"
+      - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - webpacker
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: webpacker
+      PG_PASSWORD: password
