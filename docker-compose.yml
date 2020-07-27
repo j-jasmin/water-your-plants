@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password
 
-  webpack:
+  webpack-dev-server:
     build: .
     command: ./bin/webpack-dev-server
     volumes:
@@ -29,7 +29,8 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - webpack
+      - webpack-dev-server
+    container_name: water-your-plants_app_1
     environment:
-      WEBPACKER_DEV_SERVER_HOST: webpack
+      WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
       PG_PASSWORD: password
