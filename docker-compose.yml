@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+
+  webpack-dev-server:
+    build: .
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/app
+    ports:
+      - '3035:3035'
+    environment:
+      - "NODE_ENV:development"
+      - "RAILS_ENV_development"
+      - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
+
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - webpack-dev-server
+    container_name: water-your-plants_app_1
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
+      PG_PASSWORD: password
