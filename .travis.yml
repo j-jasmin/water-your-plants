@@ -1,36 +1,26 @@
-# language: ruby
-# rvm:
-#   - 2.6.6
-# cache: bundler
-# services:
-#   - postgresql
-# before_script:
-#   - bundle exec rake db:create
-#   - bundle exec rake db:migrate
-#   #- bundle exec rake assets:precompile
-# install:
-#   - bundle install
-#   - nvm install node v12.3.1
-#   - node -v
-#   - npm install yarn -g
-#   - yarn install
-# script: bundle exec rspec
 sudo: required
 
 language: ruby
+
 rvm:
   - 2.6.6
+
 services:
   - docker
+
 install: skip
+
 before_script:
   - docker-compose up -d
   - docker exec -it water-your-plants_app_1 bash -c "nvm install node v12.3.1; node -v; npm install yarn -g; yarn install"
+
 script:
   - docker exec -it water-your-plants_app_1 bash -c "bundle exec rake db:create db:migrate; bundle exec rspec"
+
 after_script:
   - docker-compose down
   - docker images
+
 deploy:
   provider: heroku
   api_key:
