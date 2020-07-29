@@ -9,6 +9,21 @@ services:
     environment:
       POSTGRES_PASSWORD: password
 
+  redis:
+    image: redis
+
+  sidekiq:
+    build: .
+    depends_on:
+      - app
+      - db
+      - redis
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_PASSWORD: password
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec sidekiq"
+
   webpack-dev-server:
     build: .
     command: ./bin/webpack-dev-server
@@ -30,7 +45,10 @@ services:
     depends_on:
       - db
       - webpack-dev-server
-    container_name: water-your-plants_app_1
+      - redis
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
       PG_PASSWORD: password
+    #entrypoint: ./entrypoints/docker-entrypoint.sh
+

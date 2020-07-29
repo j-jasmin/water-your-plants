@@ -10,16 +10,11 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 
 RUN gem install bundler
-RUN bundle install
+RUN bundle check || bundle install
+
+COPY package.json yarn.lock ./
+RUN yarn install --check-files
 
 COPY . .
 
-RUN yarn install --check-files
-
 EXPOSE 3000
-
-ENTRYPOINT ["bundle", "exec"]
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
-#RUN RAILS_ENV=production bundle exec rake assets:precompile
