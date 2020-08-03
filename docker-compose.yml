@@ -22,7 +22,7 @@ services:
       - .:/app
     environment:
       POSTGRES_PASSWORD: password
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec sidekiq"
+    entrypoint: ./entrypoints/sidekiq-entrypoint.sh
 
   webpack-dev-server:
     build: .
@@ -46,10 +46,9 @@ services:
       - db
       - webpack-dev-server
       - redis
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    entrypoint: ./entrypoints/docker-entrypoint.sh
     container_name: water_your_plants_app_1
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
       PG_PASSWORD: password
-    #entrypoint: ./entrypoints/docker-entrypoint.sh
 
