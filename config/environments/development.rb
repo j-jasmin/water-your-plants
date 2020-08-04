@@ -29,10 +29,10 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  if File.file?('/.dockerenv') == true
-    host_ip = `/sbin/ip route|awk '/default/ { print $3 }'`.strip
-    config.web_console.whitelisted_ips << host_ip
-  end
+  # if File.file?('/.dockerenv') == true
+  #   host_ip = `/sbin/ip route|awk '/default/ { print $3 }'`.strip
+  #   config.web_console.whitelisted_ips << host_ip
+  # end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
