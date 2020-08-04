@@ -29,6 +29,11 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  if File.file?('/.dockerenv') == true
+    host_ip = `/sbin/ip route|awk '/default/ { print $3 }'`.strip
+    config.web_console.whitelisted_ips << host_ip
+  end
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
 
@@ -60,7 +65,6 @@ Rails.application.configure do
   # needed for docker
   config.webpacker.check_yarn_integrity = false
   config.serve_static_assets = true
-  #config.web_console.whitelisted_ips = '172.24.0.1'
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 

@@ -4,5 +4,6 @@ class Plant < ApplicationRecord
   validates :common_name, presence: true
 
   has_many :watering_events, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   belongs_to :user
 end
