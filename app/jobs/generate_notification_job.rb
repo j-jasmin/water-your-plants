@@ -9,9 +9,7 @@ class GenerateNotificationJob < ApplicationJob
     #     notification = Notification.new(date: Date.today, plant: plant)
     #     notification.save if notification.valid?
     #   end
-    p plant
+      p plant.watering_events.sort { |a, b| b.date <=> a.date }[0][:date]
     end
-    # notifications = Notification.all
-    # p notifications
   end
 end
