@@ -3,15 +3,15 @@ class GenerateNotificationJob < ApplicationJob
 
   def perform
     plants = Plant.all
-    # plants.each do |plant|
+    plants.each do |plant|
     #   next_event = plant.watering_events.sort { |a, b| b.date <=> a.date }[0][:date] + plant.watering_interval
     #   if next_event == Date.today
     #     notification = Notification.new(date: Date.today, plant: plant)
     #     notification.save if notification.valid?
     #   end
-    # end
+    p plant
+    end
     # notifications = Notification.all
     # p notifications
-    p plants
   end
 end
