@@ -36,7 +36,7 @@ plants[:data].each do |plant_info|
 
   rand(1..5).times do
     watering_event = WateringEvent.new(
-      date: Date.today - rand(1..100),
+      date: Date.today - rand(1..10),
       plant: plant
       )
     watering_event.save!

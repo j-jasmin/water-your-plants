@@ -17,7 +17,7 @@ class PlantsController < ApplicationController
     plant = Plant.new(plant_params)
     plant.user = current_user
     if plant.save
-      redirect_to root_path
+      redirect_to plant_path(plant)
     else
       render :new
     end
