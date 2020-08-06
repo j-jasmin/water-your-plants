@@ -37,7 +37,7 @@ gem 'httparty'
 
 gem 'cloudinary', '~> 1.12.0'
 
-gem "workless", git: "https://github.com/hassyyy/workless.git"
+gem "workless"
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
