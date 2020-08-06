@@ -34,9 +34,9 @@ plants[:data].each do |plant_info|
   file = URI.open(plant_info[:image_url])
   plant.photo.attach(io: file, filename: "plant_image_#{plant[:common_name]}", content_type: 'image/png')
 
-  rand(1..5).times do
+  1.times do
     watering_event = WateringEvent.new(
-      date: Date.today - rand(1..10),
+      date: Date.today - 1,
       plant: plant
       )
     watering_event.save!
