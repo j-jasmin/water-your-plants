@@ -55,7 +55,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   config.after_initialize do
-    Delayed::Job.scaler = :heroku
+    Sidekiq::Job.scaler = :heroku
   end
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
