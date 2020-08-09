@@ -10,6 +10,7 @@ RSpec.describe 'Creating a watering event', type: :feature do
   scenario 'successfully' do
     visit new_plant_path
     fill_in 'plant[common_name]', with: 'Monstera', visible: false
+    fill_in 'plant[watering_interval]', with: 10, visible: false
     click_on 'Create Plant'
     visit root_path
     page.status_code == 200

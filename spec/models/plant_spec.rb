@@ -6,10 +6,10 @@ RSpec.describe Plant, type: :model do
     expect(plant.common_name).to eq("Monstera")
   end
 
-  it "common name is unique" do
+  it "nickname is unique" do
     user = User.create!(email: "test@test.com", password: "123456")
-    Plant.create!(common_name: "Monstera", user: user)
-    plant = Plant.new(common_name: "Monstera")
+    Plant.create!(nickname: "Monsti", user: user, watering_interval: 10)
+    plant = Plant.new(nickname: "Monsti")
     expect(plant).not_to be_valid
   end
 
@@ -28,13 +28,13 @@ RSpec.describe Plant, type: :model do
     expect(plant.description).to eq("easy going")
   end
 
-  it "has a watering_interval" do
+  it "has a watering interval" do
     plant = Plant.new(watering_interval: 10)
     expect(plant.watering_interval).to eq(10)
   end
 
-  it "common name can not be blank" do
-    plant = Plant.new(common_name: "")
+  it "watering interval can not be blank" do
+    plant = Plant.new(watering_interval: "")
     expect(plant).to_not be_valid
   end
 
@@ -52,8 +52,15 @@ RSpec.describe Plant, type: :model do
 
   it "should destroy child watering_events when destroying self" do
     user = User.create!(email: "test@test.com", password: "123456")
-    plant = Plant.create!(common_name: "Monstera", user: user)
+    plant = Plant.create!(common_name: "Monstera", user: user, watering_interval: 10)
     WateringEvent.create!(date: Date.today, plant: plant)
     expect { plant.destroy }.to change { plant.watering_events.count }.from(1).to(0)
+  end
+
+  it "should destroy child notifications when destroying self" do
+    user = User.create!(email: "test@test.com", password: "123456")
+    plant = Plant.create!(common_name: "Monstera", user: user, watering_interval: 10)
+    Notification.create!(date: Date.today, plant: plant)
+    expect { plant.destroy }.to change { plant.notifications.count }.from(1).to(0)
   end
 end

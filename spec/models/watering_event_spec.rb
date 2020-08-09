@@ -12,7 +12,7 @@ RSpec.describe WateringEvent, type: :model do
 
   it "belongs to a plant" do
     user = User.create!(email: "test@test.com", password: "123456")
-    plant = Plant.create!(common_name: "Monstera", user: user)
+    plant = Plant.create!(common_name: "Monstera", user: user, watering_interval: 10)
     watering_event = WateringEvent.create!(plant: plant)
     expect(watering_event.plant).to eq(plant)
   end
