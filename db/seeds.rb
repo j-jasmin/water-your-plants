@@ -39,7 +39,7 @@ plants[:data].each do |plant_info|
 
   1.times do
     watering_event = WateringEvent.new(
-      date: Date.today,
+      date: Date.today - 1,
       plant: plant
       )
     watering_event.save!

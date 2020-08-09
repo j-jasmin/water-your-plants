@@ -5,7 +5,18 @@
 .bundleignore
 .bundle
 .byebug_history
-tmp
+.rspec
+.rubocop.yml
+.travis.yml
+.ruby-version
+README.md
+Procfile*
+public/assets/*
+docker-compose.*
+yarn-error.log
+tmp/*
+!tmp/pids/
+!tmp/pids/.keep
 log
 config/deploy
 public/packs
@@ -14,3 +25,4 @@ node_modules
 yarn-error.log
 coverage/
 .env
+

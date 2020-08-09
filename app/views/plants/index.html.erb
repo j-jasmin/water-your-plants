@@ -5,9 +5,9 @@
         <%= cl_image_tag plant.photo.key, height: 240, width: 200, crop: :fill %>
     <% end %>
     <p>Common name: <%= plant.common_name %></p>
-    <% unless plant.watering_events.blank? || plant.watering_interval.blank? %>
-      <p>Last watered: <%= plant.watering_events.sort{|a,b| b.date <=> a.date}[0][:date].to_date.to_formatted_s(:long) %></p>
-      <p>Water on: <%= (plant.watering_events.sort{|a,b| b.date <=> a.date}[0][:date] + plant.watering_interval).to_date.to_formatted_s(:long) %></p>
+    <% if @watering_event %>
+      <p>Last watered: <%= @watering_event.to_date.to_formatted_s(:long) %></p>
+      <p>Water on: <%= (@watering_event + plant.watering_interval).to_date.to_formatted_s(:long) %></p>
     <% end %>
   <% end %>
   <% end %>

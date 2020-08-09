@@ -3,6 +3,11 @@ class PlantsController < ApplicationController
 
   def index
     @plants = Plant.where(user: current_user)
+    @plants.each do |plant|
+      if plant.watering_events
+        @watering_event = WateringEvent.where(plant: plant).order("date DESC").first[:date]
+      end
+    end
   end
 
   def show
