@@ -1,3 +1,3 @@
 generate_notification_job:
-  cron: "* 13 * * *" #every day at 3 pm
+  cron: "* 18 * * *" #every day at 3 pm
   class: "GenerateNotificationJob"
