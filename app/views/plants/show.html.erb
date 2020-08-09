@@ -5,7 +5,7 @@
   <p>Common name: <%= @plant.common_name %></p>
   <p>Nickname: <%= @plant.nickname %></p>
   <p>Scientific name: <%= @plant.scientific_name %></p>
-  <p>Watering interval: <%= @plant.watering_interval %> days</p>
+  <p>Watering interval: <%= @plant.watering_interval %></p>
   <% if @plant.watering_events %>
     <% @plant.watering_events.sort{|a,b| b.date <=> a.date}.each do |watering_event| %>
       <p><%= watering_event.date.to_date.to_formatted_s(:long) %></p>
