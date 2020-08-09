@@ -6,12 +6,12 @@ RSpec.describe Plant, type: :model do
     expect(plant.common_name).to eq("Monstera")
   end
 
-  it "nickname is unique" do
-    user = User.create!(email: "test@test.com", password: "123456")
-    Plant.create!(nickname: "Monsti", user: user, watering_interval: 10)
-    plant = Plant.new(nickname: "Monsti")
-    expect(plant).not_to be_valid
-  end
+  # it "nickname is unique" do
+  #   user = User.create!(email: "test@test.com", password: "123456")
+  #   Plant.create!(nickname: "Monsti", user: user, watering_interval: 10)
+  #   plant = Plant.new(nickname: "Monsti")
+  #   expect(plant).not_to be_valid
+  # end
 
   it "has a nickname" do
     plant = Plant.new(nickname: "Monsti")
