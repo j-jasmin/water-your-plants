@@ -1,5 +1,6 @@
 require 'httparty'
 require "open-uri"
+require "faker"
 
 puts "Destroying users.."
 User.destroy_all
@@ -30,6 +31,7 @@ plants[:data].each do |plant_info|
     plant = Plant.create!(
       common_name: plant_info[:common_name],
       scientific_name: plant_info[:scientific_name],
+      nickname: Faker::Name.unique.name,
       watering_interval: 1,
       user: user
     )

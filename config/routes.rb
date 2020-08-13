@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   devise_for :users
-  root to: 'plants#index'
+  root to: 'pages#home'
 
   resources :plants do
     resources :watering_events, only: [ :index, :new, :create ]

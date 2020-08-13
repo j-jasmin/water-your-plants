@@ -1,1 +1,6 @@
-@import "index_plants";
+@import "index_page";
+
+body {
+  font-family: $body-font;
+  background-color: $powder;
+}
