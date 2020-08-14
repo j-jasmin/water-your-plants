@@ -1,16 +1,25 @@
 <div class="container">
+  <%= link_to new_plant_path do %>
+  <div class="new-plant-card">
+    <div class="new-plant-text">
+    <p style="color:white">Add plant</p>
+  </div>
+</div>
+<% end %>
+  <div class="scrollable">
   <% @plants.each do |plant| %>
     <%= link_to plant_path(plant) do %>
-    <% if plant.photo.attached? %>
-        <%= cl_image_tag plant.photo.key, height: 240, width: 200, crop: :fill %>
-    <% end %>
-    <p>Common name: <%= plant.common_name %></p>
-    <% if @watering_event %>
-      <p>Last watered: <%= @watering_event.to_date.to_formatted_s(:long) %></p>
-      <p>Water on: <%= (@watering_event + plant.watering_interval).to_date.to_formatted_s(:long) %></p>
+    <div class="plant-card">
+      <div class="plant-card-text">
+        <h4><%= plant.common_name %></h4>
+        <% if @watering_event %>
+          <p>Needs water in: <%= pluralize(((@watering_event + plant.watering_interval) - @watering_event.to_date).to_i, "day") %></p>
+      </div>
+        <% end %>
+    </div>
     <% end %>
   <% end %>
-  <% end %>
-
-  <p><%= link_to "Add plant", new_plant_path %></p>
+  </div>
 </div>
+
+

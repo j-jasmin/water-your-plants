@@ -1,0 +1,32 @@
+.log-in-page {
+  background-image: image-url('sign-in-bg.png');
+  background-size: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1;
+}
+
+.centered {
+  position: relative;
+  width: 100%;
+  display: table;
+}
+
+.sign-in-form {
+  margin: auto;
+  margin: 0;
+  background: white;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 14px 32px;
+  border-radius: 8px;
+  left: 19%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+
+

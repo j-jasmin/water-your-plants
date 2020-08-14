@@ -1,0 +1,23 @@
+.btn-login {
+  background: $avocado;
+  width: 190px;
+  color: white;
+  transition: 0.5s;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.btn-login:hover {
+  background: rgba(92, 128, 1, 0.7);
+}
+
+.btn-signup {
+  border: 1px solid $avocado;
+  width: 190px !important;
+  color: $avocado;
+}
+
+.form-color {
+  color: $avocado !important;
+}

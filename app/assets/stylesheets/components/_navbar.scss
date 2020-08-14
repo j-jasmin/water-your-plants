@@ -1,31 +1,12 @@
-.navbar {
+.navbar-lewagon {
   justify-content: space-between;
-  background: $green;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  height: 60px;
+  background: white;
 }
 
-.navbar-nav {
-  list-style: none;
-  float: right;
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
 }
 
-.navbar-nav > li {
-  display: inline;
-}
-
-
-.nav-item > a {
-  font-size: 16px;
-  text-decoration: none;
-  color: $powder;
-}
-
-.navbar-brand > p {
-  margin: auto;
-  font-size: 16px;
-  letter-spacing: 1.2px;
-  font-weight: 600;
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
 }

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   devise_for :users
-  root to: 'pages#home'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 
   resources :plants do
     resources :watering_events, only: [ :index, :new, :create ]

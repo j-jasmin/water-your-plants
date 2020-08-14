@@ -4,7 +4,7 @@ class GenerateNotificationJob < ApplicationJob
   def perform
     plants = Plant.all
     plants.each do |plant|
-      next unless plant.watering_events
+      next unless plant.watering_events.present?
 
       last_watering_event = WateringEvent.where(plant: plant).order("date DESC").first[:date]
       next_watering_event = last_watering_event + plant.watering_interval
