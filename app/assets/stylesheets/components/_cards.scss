@@ -24,6 +24,14 @@
   border-radius: 10px;
 }
 
+.mb-5, .my-5 {
+    margin-bottom: 1.5rem !important;
+}
+
+.shadow {
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.15) !important;
+}
+
 .plant-card-text {
   position: absolute;
   bottom: 0;
