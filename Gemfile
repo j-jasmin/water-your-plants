@@ -24,8 +24,6 @@ gem 'sidekiq'
 
 gem "sidekiq-cron", "~> 1.1"
 
-gem 'twilio-ruby'
-
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
