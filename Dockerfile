@@ -1,6 +1,7 @@
 FROM ruby:2.6.6-alpine
 
-RUN apk add --no-cache --update build-base \
+RUN apk add --no-cache --update bash \
+    build-base \
     linux-headers \
     git \
     postgresql-dev \
