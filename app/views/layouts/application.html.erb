@@ -4,7 +4,7 @@
   <title>WaterYourPlants</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport' />
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
 </head>
@@ -16,7 +16,7 @@
   <%= render 'shared/flashes' %>
 
   <%= yield %>
-  <script>
+  <!-- <script>
     $(document).ready(function () {
       'use strict';
 
@@ -35,6 +35,6 @@
   }, false);
   orientationChange();
 });
-</script>
+</script> -->
 </body>
 </html>
