@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WaterYourPlants</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;' name='viewport' />
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-  </head>
+<head>
+  <title>WaterYourPlants</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;' name='viewport' />
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+</head>
 
-  <body>
-    <% if user_signed_in? %>
-      <%= render 'shared/navbar' %>
-    <% end %>
-    <%= render 'shared/flashes' %>
+<body>
+  <% if user_signed_in? %>
+  <%= render 'shared/navbar' %>
+  <% end %>
+  <%= render 'shared/flashes' %>
 
-    <%= yield %>
-  </body>
+  <%= yield %>
+  <script>
+    $(document).ready(function () {
+      'use strict';
+
+      var orientationChange = function () {
+        var $element = $('.selector');
+    $element.css('height', '100vh'); // Change this to your own original vh value.
+    $element.css('height', $element.height() + 'px');
+  };
+
+  var s = screen;
+  var o = s.orientation || s.msOrientation || s.mozOrientation;
+  o.addEventListener('change', function () {
+    setTimeout(function () {
+      orientationChange();
+    }, 250);
+  }, false);
+  orientationChange();
+});
+</script>
+</body>
 </html>
