@@ -1,10 +1,12 @@
-FROM ruby:2.6.6
+FROM ruby:2.6.6-alpine
 
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update -qq && apt-get install -y build-essential nodejs yarn postgresql-client
+RUN apk add --no-cache --update build-base \
+    linux-headers \
+    git \
+    postgresql-dev \
+    nodejs \
+    yarn \
+    tzdata && rm -rf /var/cache/apk/*
 
 RUN mkdir /app
 WORKDIR /app
