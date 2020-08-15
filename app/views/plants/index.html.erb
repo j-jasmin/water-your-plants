@@ -1,8 +1,9 @@
-<div class="container">
+<div class="container-index">
   <div class="overview">
     <h3>Hello <%= current_user.name.capitalize %>,</h3>
     <p>welcome back! 👋</p>
   </div>
+  <div class="margin-left">
   <div class="scrollable">
   <% @plants.each do |plant| %>
     <%= link_to plant_path(plant) do %>
@@ -16,6 +17,7 @@
     </div>
     <% end %>
   <% end %>
+  </div>
   </div>
   <%= link_to new_plant_path do %>
   <div class="new-plant-card">

@@ -1,8 +1,12 @@
+ .container-index {
+  height: calc(100vh - 66px);
+ }
+
  .overview {
     height: 140px;
     width: 80%;
     margin: auto;
-    margin-top: 15px;
+    padding-top: 15px;
  }
 
 .overview > p {
