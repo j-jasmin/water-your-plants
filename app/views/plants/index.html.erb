@@ -9,7 +9,7 @@
   <div class="scrollable">
   <% @plants.each do |plant| %>
     <%= link_to plant_path(plant) do %>
-    <div class="plant-card">
+    <div class="plant-card shadow p-3 mb-5 bg-white rounded">
       <div class="plant-card-text">
         <h4><%= plant.common_name %></h4>
         <% if @watering_event %>

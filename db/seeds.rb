@@ -14,7 +14,7 @@ WateringEvent.destroy_all
 puts "Destroying notifications..."
 Notification.destroy_all
 
-user = User.create!(email: "jasmin@test.com", password: "123456")
+user = User.create!(name: "jasmin", email: "jasmin@test.com", password: "123456")
 
 response = HTTParty.get(
   'https://trefle.io/api/v1/plants', format: :plain,

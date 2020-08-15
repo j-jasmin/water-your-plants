@@ -1,6 +1,7 @@
 .log-in-page {
   background-image: image-url('test.png');
   background-size: center;
+  background-repeat: no-repeat;
   display: block;
   height: 100%;
 }
@@ -15,5 +16,9 @@
   line-height: 100%;
 }
 
+.form-control:focus {
+  border-color: green;
+  box-shadow: 0 0 0 0.1rem rgba(30, 130, 76, 0.5);
+}
 
 

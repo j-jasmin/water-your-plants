@@ -1,10 +1,22 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to plants_path, class: "navbar-brand" do %>
+    <% unless current_page?(plants_path) %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <polyline points="15 6 9 12 15 18" />
+      </svg>
+    <% else %>
     <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <% end %>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-align-right" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z"/>
+    <line x1="4" y1="6" x2="20" y2="6" />
+    <line x1="10" y1="12" x2="20" y2="12" />
+    <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
   </button>
 
 
@@ -13,7 +25,6 @@
       <li class="nav-item dropdown">
           <%= link_to "Add a plant", new_plant_path, class: "dropdown-item" %>
           <%= link_to "Sign Out", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-        </div>
       </li>
     </ul>
   </div>

@@ -10,3 +10,11 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+button > .navbar-toggler {
+  border-color: none !important;
+}
+
+button:focus {
+  outline: none;
+}
