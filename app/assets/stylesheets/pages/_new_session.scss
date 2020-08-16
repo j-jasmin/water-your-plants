@@ -3,10 +3,10 @@
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  overflow: visible;
-  overflow-x: visible;
-  overflow-y: visible;
-  position: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .sign-in-form {
