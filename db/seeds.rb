@@ -34,7 +34,7 @@ plants[:data].each do |plant_info|
       user: user
     )
 
-  1.times do
+  rand(1..2).times do
     watering_event = WateringEvent.new(
       date: Date.today - rand(1..4),
       plant: plant
