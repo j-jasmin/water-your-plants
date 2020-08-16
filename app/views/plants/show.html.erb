@@ -1,4 +1,5 @@
 <div class="container-plant-show">
+  <div class="block">
   <div class="plant-information">
   <p><%= @plant.common_name %></p>
   <p>Nickname: <%= @plant.nickname %></p>
@@ -17,5 +18,6 @@
 
 
   <%= link_to "#{@plant.common_name} died...", plant_path(@plant), method: :delete, data: {confirm: 'Are you sure?'} %>
+  </div>
   </div>
 </div>

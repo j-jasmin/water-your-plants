@@ -2,12 +2,11 @@
   background-image: image-url('test.png');
   background-position: center;
   background-repeat: no-repeat;
-  display: block;
-  height: 99vh;
+  height: 100vh;
 }
 
 .sign-in-form {
-  margin: 140px 20px 0px 20px;
+  margin: 120px 20px 0px 20px;
   background: white;
   padding: 38px 55px;
   border-radius: 10px;
@@ -21,4 +20,7 @@
   box-shadow: 0 0 0 0.1rem rgba(30, 130, 76, 0.5);
 }
 
-
+.block {
+  display: block;
+  height: 100vh;
+}
