@@ -22,4 +22,3 @@ RUN yarn install --check-files
 
 COPY . .
 
-EXPOSE 3000

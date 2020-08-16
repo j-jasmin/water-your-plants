@@ -4,4 +4,8 @@
 
 body, html {
   font-family: $body-font;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 }
