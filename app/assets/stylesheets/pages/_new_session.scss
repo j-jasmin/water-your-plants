@@ -1,8 +1,8 @@
 .log-in-page {
-  background-image: image-url('test.png');
+  background-image: image-url('test.png') !important;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: calc(100vh-66px);
 }
 
 .sign-in-form {
