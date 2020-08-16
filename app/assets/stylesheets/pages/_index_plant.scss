@@ -1,3 +1,14 @@
+body, html {
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
  .container-index {
   height: calc(100vh - 66px);
  }
