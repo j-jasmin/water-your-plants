@@ -1,8 +1,16 @@
 .log-in-page {
   background-image: image-url('test.png') !important;
   background-position: center;
+  background-attachment: scroll
   background-repeat: no-repeat;
   height: calc(100vh-66px);
+  width: 100%;
+  position: relative;
+  display: table;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .sign-in-form {
