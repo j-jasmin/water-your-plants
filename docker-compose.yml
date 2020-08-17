@@ -11,6 +11,8 @@ services:
 
   redis:
     image: redis
+    ports:
+      - 6379:6379
 
   sidekiq:
     build: .
@@ -30,7 +32,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - '3035:3035'
+      - 3035:3035
     environment:
       - "NODE_ENV:development"
       - "RAILS_ENV_development"
@@ -41,7 +43,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "3000:3000"
+      - 3000:3000
     depends_on:
       - db
       - webpack-dev-server
