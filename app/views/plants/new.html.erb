@@ -1,8 +1,9 @@
-<%= simple_form_for(@plant) do |f| %>
-  <%= f.label :common_name %>
-  <%= f.text_field :common_name %>
-  <%= f.label :watering_interval %>
-  <%= f.text_field :watering_interval %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
+<div class="container-new-plant">
+  <%= simple_form_for(@plant) do |f| %>
+    <%= f.label :common_name %>
+    <%= f.text_field :common_name %>
+    <%= f.label :watering_interval %>
+    <%= f.text_field :watering_interval %>
+    <%= f.submit :"Add Plant", class: "btn btn-login" %>
+  <% end %>
+</div>

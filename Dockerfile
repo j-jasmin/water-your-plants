@@ -12,13 +12,13 @@ RUN apk add --no-cache --update bash \
 RUN mkdir /app
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
-
 RUN gem install bundler
-RUN bundle check || bundle install
 
 COPY package.json yarn.lock ./
 RUN yarn install --check-files
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle check || bundle install
 
 COPY . .
 
