@@ -4,11 +4,12 @@ class GenerateNotificationJob < ApplicationJob
   def perform
     plants = Plant.includes(:watering_events)
     plants.each do |plant|
-      next unless plant.watering_events.present?
+      notification = Notification.new
 
-      last_watering_event = WateringEvent.where(plant: plant).order("date DESC").first[:date]
-      next_watering_event = last_watering_event + plant.watering_interval
-      Notification.create(date: Date.today, plant: plant, needs_water: true) if next_watering_event == Date.today
+      notification.needs_water = true if plant.needs_water?
+      notification.needs_fertilizer = true if plant.needs_fertilizer?
+
+      notification.save!
     end
   end
 end

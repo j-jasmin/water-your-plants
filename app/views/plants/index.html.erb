@@ -4,35 +4,31 @@
     <p>welcome back! 🌱</p>
   </div>
   <% if @plants.present? %>
-  <div class="margin-left">
-  <p>Your Garden has <%= pluralize(@plants.count, "plant") %>.</p>
+  <p style="margin-left: 20px;">Your Garden has <%= pluralize(@plants.count, "plant") %>.</p>
     <div class="scrollable">
       <% @plants.each do |plant| %>
         <%= link_to plant_path(plant) do %>
           <div class="plant-card shadow p-3 mb-5 bg-white rounded">
             <div class="plant-card-text">
-              <p style="font-size:18px;"><%= plant.common_name %></p>
-              <% if @watering_event %>
-              <p>Needs water in: <%= pluralize(((@watering_event. + plant.watering_interval) - @watering_event.to_date).to_i, "day") %></p>
-            </div>
-              <% end %>
-          </div>
-        <% end %>
-    </div>
-    <p>Recent activites:</p>
-    <div class="scrollable">
-        <%= link_to plant_path(plant) do %>
-          <div class="activity-card shadow p-3 mb-5 bg-white rounded">
-            <div class="plant-card-text">
+              <p style="font-weight: bold;"><%= plant.common_name %></p>
               <% if @watering_event %>
               <p>Needs water in: <%= pluralize(((@watering_event + plant.watering_interval) - @watering_event.to_date).to_i, "day") %></p>
-            </div>
               <% end %>
+            </div>
           </div>
         <% end %>
      <% end %>
     </div>
-  </div>
+    <p style="margin-left: 20px;">Upcoming activites:</p>
+    <div class="scrollable">
+      <% @notifications.each do |notification| %>
+          <div class="activity-card shadow p-3 mb-5 bg-white rounded">
+            <div class="plant-card-text">
+              <p style="font-weight: bold;"><%= notification.plant.common_name %></p>
+            </div>
+          </div>
+        <% end %>
+    </div>
   <% else %>
   <%= link_to new_plant_path do %>
     <div class="new-plant-card">

@@ -4,12 +4,9 @@ class PlantsController < ApplicationController
   def index
     @plants = Plant.includes(:watering_events).where(user: current_user)
     @plants.each do |plant|
-      if plant.watering_events.present?
-        @watering_event = WateringEvent.includes(:plant).where(plant: plant).order("date DESC").first[:date]
-      end
-      if plant.fertilizing_events.present?
-        @fertilizing_event = FertilizingEvent.includes(:plant).where(plant: plant).order("date DESC").first[:date]
-      end
+      @watering_event = plant.watering_events.order("date DESC").first[:date] if plant.watering_events.present?
+      @fertilizing_event = plant.watering_events.order("date DESC").first[:date] if plant.fertilizing_events.present?
+      @notifications = Notification.includes(:plant).where(plant: plant)
     end
   end
 
@@ -42,6 +39,6 @@ class PlantsController < ApplicationController
   end
 
   def plant_params
-    params.require(:plant).permit(:common_name, :scientific_name, :nickname, :watering_interval, :photo)
+    params.require(:plant).permit(:common_name, :nickname, :watering_interval, :fertilizing_interval, :photo)
   end
 end
