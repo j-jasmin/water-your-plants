@@ -7,6 +7,9 @@ class PlantsController < ApplicationController
       if plant.watering_events.present?
         @watering_event = WateringEvent.includes(:plant).where(plant: plant).order("date DESC").first[:date]
       end
+      if plant.fertilizing_events.present?
+        @fertilizing_event = FertilizingEvent.includes(:plant).where(plant: plant).order("date DESC").first[:date]
+      end
     end
   end
 

@@ -7,7 +7,7 @@ RUN apk add --no-cache --update bash \
     postgresql-dev \
     nodejs \
     yarn \
-    tzdata
+    tzdata && rm -rf /var/cache/apk/*
 
 RUN mkdir /app
 WORKDIR /app
@@ -18,6 +18,6 @@ COPY package.json yarn.lock ./
 RUN yarn install --check-files
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN bundle check || bundle install
 
 COPY . .
