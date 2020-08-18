@@ -2,7 +2,7 @@ class GenerateNotificationJob < ApplicationJob
   queue_as :default
 
   def perform
-    plants = Plant.include(:watering_events)
+    plants = Plant.includes(:watering_events)
     plants.each do |plant|
       next unless plant.watering_events.present?
 
