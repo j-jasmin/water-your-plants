@@ -1,15 +1,32 @@
 <div class="container-index">
   <div class="overview">
-    <h3>Hello <%= current_user.name.capitalize %>,</h3>
+    <h5>Hello <%= current_user.name.capitalize %>,</h5>
     <p>welcome back! 🌱</p>
   </div>
+  <% if @plants.present? %>
   <div class="margin-left">
+  <p>Your Garden has <%= pluralize(@plants.count, "plant") %>.</p>
     <div class="scrollable">
       <% @plants.each do |plant| %>
         <%= link_to plant_path(plant) do %>
           <div class="plant-card shadow p-3 mb-5 bg-white rounded">
             <div class="plant-card-text">
-              <h4><%= plant.common_name %></h4>
+              <p style="font-size:18px;"><%= plant.common_name %></p>
+              <% if @watering_event %>
+              <p>Needs water in: <%= pluralize(((@watering_event. + plant.watering_interval) - @watering_event.to_date).to_i, "day") %></p>
+            </div>
+              <% end %>
+          </div>
+        <% end %>
+     <% end %>
+    </div>
+    <p>Recent activites:</p>
+    <div class="scrollable">
+      <% @plants.each do |plant| %>
+        <%= link_to plant_path(plant) do %>
+          <div class="activity-card shadow p-3 mb-5 bg-white rounded">
+            <div class="plant-card-text">
+              <p style="font-size:18px;"><%= plant.common_name %></p>
               <% if @watering_event %>
               <p>Needs water in: <%= pluralize(((@watering_event + plant.watering_interval) - @watering_event.to_date).to_i, "day") %></p>
             </div>
@@ -19,12 +36,14 @@
      <% end %>
     </div>
   </div>
+  <% else %>
   <%= link_to new_plant_path do %>
     <div class="new-plant-card">
       <div class="new-plant-text">
         <p style="color:white">Add plant</p>
       </div>
     </div>
+  <% end %>
   <% end %>
 </div>
 

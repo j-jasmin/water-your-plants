@@ -2,10 +2,10 @@ class PlantsController < ApplicationController
   before_action :set_plant, only: [:show, :destroy]
 
   def index
-    @plants = Plant.where(user: current_user)
+    @plants = Plant.includes(:watering_events).where(user: current_user)
     @plants.each do |plant|
       if plant.watering_events.present?
-        @watering_event = WateringEvent.where(plant: plant).order("date DESC").first[:date]
+        @watering_event = WateringEvent.includes(:plant).where(plant: plant).order("date DESC").first[:date]
       end
     end
   end

@@ -2,11 +2,9 @@
   <%= link_to plants_path, class: "navbar-brand" do %>
     <% unless current_page?(plants_path) %>
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="40" height="40" viewBox="0 0 24 24" stroke-width="1" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z"/>
-      <polyline points="15 6 9 12 15 18" />
+        <path stroke="none" d="M0 0h24v24H0z"/>
+        <polyline points="15 6 9 12 15 18" />
       </svg>
-    <% else %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
   <% end %>
 

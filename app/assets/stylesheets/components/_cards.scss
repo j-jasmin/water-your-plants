@@ -17,7 +17,15 @@
 }
 
 .plant-card {
-  height: 250px;
+  height: 200px;
+  width: 160px;
+  position: relative;
+  margin-right: 15px;
+  border-radius: 10px;
+}
+
+.activity-card {
+  height: 100px;
   width: 180px;
   position: relative;
   margin-right: 15px;
@@ -37,6 +45,7 @@
   bottom: 0;
   left: 0;
   color: rgb(80, 80, 80);
+  margin-left: 18px;
 }
 
 .scrollable {
