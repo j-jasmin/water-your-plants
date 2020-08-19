@@ -1,0 +1,13 @@
+<div class="container">
+  <p><%= @plant.common_name %></p>
+  <% if @plant.watering_events.present? %>
+      <% @watering_events.each do |watering_event| %>
+     <p>Watered on: <%= watering_event.date %></p>
+    <% end %>
+  <% end %>
+  <% if @plant.notifications.present? %>
+    <% @notifications.each do |notification| %>
+   <p><%= notification.date %></p>
+  <% end %>
+  <% end %>
+</div>

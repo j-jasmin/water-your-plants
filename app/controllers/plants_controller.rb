@@ -1,12 +1,16 @@
 class PlantsController < ApplicationController
-  before_action :set_plant, only: [:show, :destroy]
+  before_action :set_plant, only: [:show, :destroy, :care]
 
   def index
     @plants = Plant.includes(:watering_events).where(user: current_user)
     @plants.each do |plant|
       @watering_event = plant.watering_events.order("date DESC").first[:date] if plant.watering_events.present?
       @fertilizing_event = plant.watering_events.order("date DESC").first[:date] if plant.fertilizing_events.present?
-      @notifications = Notification.includes(:plant).where(plant: plant)
+    end
+    notifications = Notification.includes(:plant)
+    @notifications = []
+    notifications.each do |notification|
+      @notifications << notification if notification.plant.user == current_user
     end
   end
 
@@ -30,6 +34,12 @@ class PlantsController < ApplicationController
 
   def destroy
     redirect_to root_path if @plant.destroy
+  end
+
+  def care
+    @watering_events = @plant.watering_events
+    @fertilizing_events = @plant.fertilizing_events
+    @notifications = @plant.notifications
   end
 
   private

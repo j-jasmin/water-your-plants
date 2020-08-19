@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
+  get 'plants/:id/care', to: 'plants#care', as: :care
+
   resources :plants do
-    resources :watering_events, only: [ :index, :new, :create ]
+    resources :watering_events, only: [ :new, :create ]
+    resources :fertilizing_events, only: [ :new, :create ]
   end
 end
