@@ -10,6 +10,9 @@ Plant.destroy_all
 puts "Destroying watering events.."
 WateringEvent.destroy_all
 
+puts "Destroying fertilizing events events.."
+FertilizingEvent.destroy_all
+
 puts "Destroying notifications..."
 Notification.destroy_all
 
@@ -37,7 +40,7 @@ plants[:data].each do |plant_info|
 
   rand(1..2).times do
     watering_event = WateringEvent.new(
-      date: Date.today + 1,
+      date: Date.today,
       plant: plant,
       note: "One glass of water"
       )
@@ -46,7 +49,7 @@ plants[:data].each do |plant_info|
 
   rand(1..2).times do
     fertilizing_event = FertilizingEvent.new(
-      date: Date.today + 1,
+      date: Date.today,
       plant: plant
       )
     fertilizing_event.save!
