@@ -50,6 +50,18 @@ RSpec.describe Plant, type: :model do
     expect(plant.fertilizing_events.count).to eq(0)
   end
 
+  it "has many fertilizer notifications" do
+    plant = Plant.new(common_name: "Monstera")
+    expect(plant).to respond_to(:fertilizer_notifications)
+    expect(plant.fertilizer_notifications.count).to eq(0)
+  end
+
+  it "has many water notifications" do
+    plant = Plant.new(common_name: "Monstera")
+    expect(plant).to respond_to(:water_notifications)
+    expect(plant.water_notifications.count).to eq(0)
+  end
+
   it "belongs to a user" do
     user = User.create!(email: "test@test.com", password: "123456")
     plant = Plant.new(common_name: "Monstera", user: user)
@@ -70,10 +82,17 @@ RSpec.describe Plant, type: :model do
     expect { plant.destroy }.to change { plant.fertilizing_events.count }.from(1).to(0)
   end
 
-  it "should destroy child notifications when destroying self" do
+  it "should destroy child fertilizer notifications when destroying self" do
     user = User.create!(email: "test@test.com", password: "123456")
     plant = Plant.create!(common_name: "Monstera", user: user, watering_interval: 10)
-    Notification.create!(date: Date.today, plant: plant)
-    expect { plant.destroy }.to change { plant.notifications.count }.from(1).to(0)
+    FertilizerNotification.create!(date: Date.today, plant: plant)
+    expect { plant.destroy }.to change { plant.fertilizer_notifications.count }.from(1).to(0)
+  end
+
+  it "should destroy child fertilizer notifications when destroying self" do
+    user = User.create!(email: "test@test.com", password: "123456")
+    plant = Plant.create!(common_name: "Monstera", user: user, watering_interval: 10)
+    WaterNotification.create!(date: Date.today, plant: plant)
+    expect { plant.destroy }.to change { plant.water_notifications.count }.from(1).to(0)
   end
 end

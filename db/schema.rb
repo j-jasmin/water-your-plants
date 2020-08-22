@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_195957) do
+ActiveRecord::Schema.define(version: 2020_08_22_132326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2020_08_17_195957) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "fertilizer_notifications", force: :cascade do |t|
+    t.bigint "plant_id", null: false
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plant_id"], name: "index_fertilizer_notifications_on_plant_id"
+  end
+
   create_table "fertilizing_events", force: :cascade do |t|
     t.date "date"
     t.string "note"
@@ -43,16 +51,6 @@ ActiveRecord::Schema.define(version: 2020_08_17_195957) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["plant_id"], name: "index_fertilizing_events_on_plant_id"
-  end
-
-  create_table "notifications", force: :cascade do |t|
-    t.bigint "plant_id", null: false
-    t.date "date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.boolean "needs_water", default: false
-    t.boolean "needs_fertilizer", default: false
-    t.index ["plant_id"], name: "index_notifications_on_plant_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -81,6 +79,14 @@ ActiveRecord::Schema.define(version: 2020_08_17_195957) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "water_notifications", force: :cascade do |t|
+    t.bigint "plant_id", null: false
+    t.date "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plant_id"], name: "index_water_notifications_on_plant_id"
+  end
+
   create_table "watering_events", force: :cascade do |t|
     t.date "date"
     t.bigint "plant_id", null: false
@@ -91,8 +97,9 @@ ActiveRecord::Schema.define(version: 2020_08_17_195957) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "fertilizer_notifications", "plants"
   add_foreign_key "fertilizing_events", "plants"
-  add_foreign_key "notifications", "plants"
   add_foreign_key "plants", "users"
+  add_foreign_key "water_notifications", "plants"
   add_foreign_key "watering_events", "plants"
 end

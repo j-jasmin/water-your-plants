@@ -21,15 +21,14 @@
     </div>
     <p style="margin-left: 20px;">Upcoming activites:</p>
     <div class="scrollable">
-      <% @notifications.each do |notification| %>
+
           <div class="activity-card shadow p-3 mb-5 bg-white rounded">
             <div class="plant-card-text">
-              <p style="font-weight: bold;"><%= notification.date %></p>
-              <p><%= "Water" if notification.needs_water %></p>
-              <p><%= "Fertilizer" if notification.needs_fertilizer %></p>
+              <p style="font-weight: bold;">test</p>
+
             </div>
           </div>
-        <% end %>
+
     </div>
   <% else %>
   <%= link_to new_plant_path do %>

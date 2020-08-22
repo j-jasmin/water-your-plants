@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   db:
-    image: postgres
+    image: postgres:12.4-alpine
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     ports:
@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: password
 
   redis:
-    image: redis
+    image: redis:6.0.6-alpine
     ports:
       - 6379:6379
 
@@ -21,7 +21,7 @@ services:
       - db
       - redis
     volumes:
-      - .:/app
+      - .:/app:cached
     environment:
       POSTGRES_PASSWORD: password
     entrypoint: ./entrypoints/sidekiq-entrypoint.sh
@@ -30,7 +30,7 @@ services:
     build: .
     command: ./bin/webpack-dev-server
     volumes:
-      - .:/app
+      - .:/app:cached
     ports:
       - 3035:3035
     environment:
@@ -41,7 +41,7 @@ services:
   app:
     build: .
     volumes:
-      - .:/app
+      - .:/app:cached
     ports:
       - 3000:3000
     depends_on:

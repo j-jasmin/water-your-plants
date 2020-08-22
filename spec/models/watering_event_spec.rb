@@ -16,7 +16,8 @@ RSpec.describe WateringEvent, type: :model do
   end
 
   it "belongs to a plant" do
-    user = User.create!(email: "test@test.com", password: "123456")
+    user_attributes = FactoryBot.attributes_for(:user)
+    user = User.create!(user_attributes)
     plant = Plant.create!(common_name: "Monstera", user: user, watering_interval: 10)
     watering_event = WateringEvent.create!(plant: plant, date: Date.today)
     expect(watering_event.plant).to eq(plant)

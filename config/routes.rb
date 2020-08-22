@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'fertilizing_events/create'
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 

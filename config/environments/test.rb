@@ -42,7 +42,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the stderr.
-  config.active_support.deprecation = :stderr
+  config.active_support.deprecation = :log
   config.active_record.maintain_test_schema = true
 
   DatabaseCleaner.allow_remote_database_url = true

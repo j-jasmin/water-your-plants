@@ -13,8 +13,11 @@ WateringEvent.destroy_all
 puts "Destroying fertilizing events events.."
 FertilizingEvent.destroy_all
 
-puts "Destroying notifications..."
-Notification.destroy_all
+puts "Destroying water notifications..."
+WaterNotification.destroy_all
+
+puts "Destroying fertilize notifications..."
+FertilizerNotification.destroy_all
 
 user = User.create!(name: "jasmin", email: "jasmin@test.com", password: "123456")
 
@@ -38,18 +41,18 @@ plants[:data].each do |plant_info|
       user: user
     )
 
-  rand(1..2).times do
+  1.times do
     watering_event = WateringEvent.new(
-      date: Date.today,
+      date: Date.today - rand(1..8),
       plant: plant,
       note: "One glass of water"
       )
     watering_event.save!
   end
 
-  rand(1..2).times do
+  1.times do
     fertilizing_event = FertilizingEvent.new(
-      date: Date.today,
+      date: Date.today - rand(6..10),
       plant: plant
       )
     fertilizing_event.save!

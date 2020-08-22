@@ -9,6 +9,6 @@ class WateringEventsController < ApplicationController
   private
 
   def watering_event_params
-    params.require(:watering_event).permit(:date)
+    params.require(:watering_event).permit(:date, :note)
   end
 end

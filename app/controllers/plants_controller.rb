@@ -5,17 +5,13 @@ class PlantsController < ApplicationController
     @plants = Plant.includes(:watering_events).where(user: current_user)
     @plants.each do |plant|
       @watering_event = plant.watering_events.order("date DESC").first[:date] if plant.watering_events.present?
-      @fertilizing_event = plant.watering_events.order("date DESC").first[:date] if plant.fertilizing_events.present?
-    end
-    notifications = Notification.includes(:plant)
-    @notifications = []
-    notifications.each do |notification|
-      @notifications << notification if notification.plant.user == current_user
+      @fertilizing_event = plant.fertilizing_events.order("date DESC").first[:date] if plant.fertilizing_events.present?
     end
   end
 
   def show
     @watering_event = WateringEvent.new
+    @fertilizing_event = FertilizingEvent.new
   end
 
   def new
@@ -39,7 +35,6 @@ class PlantsController < ApplicationController
   def care
     @watering_events = @plant.watering_events
     @fertilizing_events = @plant.fertilizing_events
-    @notifications = @plant.notifications
   end
 
   private
