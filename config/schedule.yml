@@ -3,5 +3,5 @@ fertilize_notification_job:
   class: "FertilizeNotificationJob"
 
 water_notification_job:
-  cron: "2 10 * * *" #every day at 1 pm
+  cron: " 11 * * *" #every day at 1 pm
   class: "WaterNotificationJob"
