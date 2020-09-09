@@ -24,12 +24,56 @@
   border-radius: 10px;
 }
 
-.activity-card {
-  height: 100px;
+.fertilizer-activity-card {
+  height: 140px;
   width: 180px;
   position: relative;
   margin-right: 15px;
   border-radius: 10px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.water-activity-card {
+  height: 140px;
+  width: 180px;
+  position: relative;
+  margin-right: 15px;
+  border-radius: 10px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.care-card-water {
+  width: 95%;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  position: relative;
+  height: 120px;
+}
+
+.care-card-fertilizer {
+  width: 95%;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+  position: relative;
+  height: 120px;
+}
+
+.care-card-text {
+  bottom: 0;
+  left: 0;
+  color: rgb(80, 80, 80);
+  margin-left: 18px;
+  height: 120px;
 }
 
 .mb-5, .my-5 {

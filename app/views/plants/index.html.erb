@@ -11,9 +11,6 @@
           <div class="plant-card shadow p-3 mb-5 bg-white rounded">
             <div class="plant-card-text">
               <p style="font-weight: bold;"><%= plant.common_name %></p>
-              <% if @watering_event %>
-              <p>Needs water in: <%= pluralize(((@watering_event + plant.watering_interval) - @watering_event.to_date).to_i, "day") %></p>
-              <% end %>
             </div>
           </div>
         <% end %>
@@ -21,15 +18,35 @@
     </div>
     <p style="margin-left: 20px;">Upcoming activites:</p>
     <div class="scrollable">
-
-          <div class="activity-card shadow p-3 mb-5 bg-white rounded">
-            <div class="plant-card-text">
-              <p style="font-weight: bold;">M</p>
-
+        <% @sorted_upcoming_events.each do |event| %>
+        <%= link_to care_path(event.plant) do %>
+            <% case event.class.name
+               when "FertilizerNotification" %>
+              <div class="fertilizer-activity-card shadow p-3 mb-5 bg-white rounded">
+                <div class="plant-card-text">
+                    <% if event.date == Date.today %>
+                      <p>Fertilize today</p>
+                    <% else %>
+                      <p>Fertilize in <%= pluralize((event.date - Date.today).to_i, "days") %></p>
+                    <% end %>
+                  <p><%= event.plant.common_name %></p>
+              </div>
             </div>
-          </div>
-
-    </div>
+            <% when "WaterNotification" %>
+              <div class="water-activity-card shadow p-3 mb-5 bg-white rounded">
+                <div class="plant-card-text">
+                    <% if event.date == Date.today %>
+                      <p> Water today </p>
+                    <% else %>
+                      <p>Water in <%= pluralize((event.date - Date.today).to_i, "days") %></p>
+                    <% end %>
+                      <p><%= event.plant.common_name %></p>
+                    </div>
+                  </div>
+                  <% end %>
+            <% end %>
+          <% end %>
+      </div>
   <% else %>
   <%= link_to new_plant_path do %>
     <div class="new-plant-card">
@@ -37,7 +54,7 @@
         <p style="color:white">Add plant</p>
       </div>
     </div>
-  <% end %>
+    <% end %>
   <% end %>
 </div>
 

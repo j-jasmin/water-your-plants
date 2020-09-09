@@ -1,0 +1,12 @@
+.header {
+  width: 60%;
+  margin: 12px 0px 30px 30px;
+}
+
+.container-cards {
+  overflow: auto;
+}
+
+.container-cards::-webkit-scrollbar {
+  display: none;
+}

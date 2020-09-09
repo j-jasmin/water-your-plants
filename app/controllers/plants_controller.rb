@@ -3,10 +3,9 @@ class PlantsController < ApplicationController
 
   def index
     @plants = Plant.includes(:watering_events).where(user: current_user)
-    @plants.each do |plant|
-      @watering_event = plant.watering_events.order("date DESC").first[:date] if plant.watering_events.present?
-      @fertilizing_event = plant.fertilizing_events.order("date DESC").first[:date] if plant.fertilizing_events.present?
-    end
+    upcoming_events = current_user.fertilizer_notifications.where("date > ?", Date.today - 7) +
+                      current_user.water_notifications.where("date > ?", Date.today - 7)
+    @sorted_upcoming_events = upcoming_events.sort_by(&:date)
   end
 
   def show
@@ -33,8 +32,8 @@ class PlantsController < ApplicationController
   end
 
   def care
-    @watering_events = @plant.watering_events
-    @fertilizing_events = @plant.fertilizing_events
+    past_events = @plant.watering_events + @plant.fertilizing_events
+    @sorted_past_events = past_events.sort_by(&:date)
   end
 
   private

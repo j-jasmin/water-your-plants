@@ -1,13 +1,34 @@
 <div class="container">
-  <p><%= @plant.common_name %></p>
-  <% if @plant.watering_events.present? %>
-      <% @watering_events.each do |watering_event| %>
-     <p>Watered on: <%= watering_event.date %></p>
+  <div class="header">
+    <p><%= @plant.common_name %></p>
+  </div>
+  <% if @sorted_past_events .present? %>
+      <div class="container-cards">
+      <% @sorted_past_events .each do |event| %>
+        <% case event.class.name
+           when "FertilizingEvent" %>
+          <div class="care-card-water">
+            <div class="care-card-text">
+            <% if event.date < Date.today - 7 %>
+            <p>Fertilized on: <%= event.date.strftime("%B %d") %></p>
+            <% else %>
+            <p>Fertilized <%= pluralize((Date.today - event.date).to_i, "days")%> ago</p>
+            <% end %>
+            </div>
+          </div>
+          <% when "WateringEvent" %>
+          <div class="care-card-fertilizer">
+            <div class="care-card-text">
+            <% if event.date < Date.today - 7 %>
+            <p>Watered on: <%= event.date.strftime("%B %d") %></p>
+            <% else %>
+            <p>Watered <%= pluralize((Date.today - event.date).to_i, "days")%> ago</p>
+            <% end %>
+            </div>
+          </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <% if @plant.notifications.present? %>
-    <% @notifications.each do |notification| %>
-   <p><%= notification.date %></p>
-  <% end %>
+      </div>
   <% end %>
 </div>
+
