@@ -36,23 +36,23 @@ plants[:data].each do |plant_info|
       common_name: plant_info[:common_name],
       scientific_name: plant_info[:scientific_name],
       nickname: Faker::Name.unique.name,
-      watering_interval: rand(3..10),
-      fertilizing_interval: rand(10..30),
+      watering_interval: 7,
+      fertilizing_interval: 7,
       user: user
     )
 
-  rand(1..5).times do
+  1.times do
     watering_event = WateringEvent.new(
-      date: Date.today - rand(1..10),
+      date: Date.today + 1,
       plant: plant,
       note: "One glass of water"
       )
     watering_event.save!
   end
 
-  rand(1..3).times do
+  1.times do
     fertilizing_event = FertilizingEvent.new(
-      date: Date.today - rand(1..9),
+      date: Date.today + 1,
       plant: plant
       )
     fertilizing_event.save!

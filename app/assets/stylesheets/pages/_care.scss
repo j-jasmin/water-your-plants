@@ -4,7 +4,8 @@
 }
 
 .container-cards {
-  overflow: auto;
+  overflow-y: scroll;
+  height: 450px;
 }
 
 .container-cards::-webkit-scrollbar {
