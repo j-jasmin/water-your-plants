@@ -15,7 +15,7 @@ services:
       - 6379:6379
 
   sidekiq:
-    build: .
+    image: jasminj000/water_your_plants:latest
     depends_on:
       - app
       - db
@@ -27,7 +27,7 @@ services:
     entrypoint: ./entrypoints/sidekiq-entrypoint.sh
 
   webpack-dev-server:
-    build: .
+    image: jasminj000/water_your_plants:latest
     command: ./bin/webpack-dev-server
     volumes:
       - .:/app
@@ -39,7 +39,7 @@ services:
       - "WEBPACKER_DEV_SERVER_HOST=0.0.0.0"
 
   app:
-    build: .
+    image: jasminj000/water_your_plants:latest
     volumes:
       - .:/app
     ports:
