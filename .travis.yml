@@ -11,7 +11,6 @@ install: skip
 before_script:
   - docker pull jasminj000/water_your_plants:latest
   - docker-compose up -d
-  - docker exec -it water_your_plants_app_1 bash -c "yarn install"
 
 script:
   - docker exec -it water_your_plants_app_1 bash -c "bundle exec rake db:create db:migrate; bundle exec rspec"
