@@ -14,8 +14,6 @@ before_script:
 
 script:
   - docker exec -it water_your_plants_app_1 bash -c "bundle exec rake db:create db:migrate; bundle exec rspec"
-
-after_script:
   - docker-compose down
   - docker images
 
