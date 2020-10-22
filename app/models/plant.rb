@@ -1,4 +1,7 @@
 class Plant < ApplicationRecord
+  extend FriendlyId
+  friendly_id :common_name, use: :slugged
+
   has_one_attached :photo
 
   validates :watering_interval, presence: true

@@ -1,7 +1,7 @@
 fertilize_notification_job:
-  cron: "0 13 * * *" #every day at 1 pm
+  cron: "0 13 * * *" # every day at 1 pm
   class: "FertilizeNotificationJob"
 
 water_notification_job:
-  cron: "0 13 * * *" #every day at 1 pm
+  cron: "0 13 * * *" # every day at 1 pm
   class: "WaterNotificationJob"

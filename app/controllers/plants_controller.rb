@@ -39,7 +39,7 @@ class PlantsController < ApplicationController
   private
 
   def set_plant
-    @plant = Plant.find(params[:id])
+    @plant = Plant.friendly.find(params[:id])
   end
 
   def plant_params

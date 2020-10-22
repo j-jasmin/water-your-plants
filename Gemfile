@@ -22,6 +22,8 @@ gem 'redis', '~> 4.0'
 
 gem 'sidekiq'
 
+gem 'friendly_id', '~> 5.4.0'
+
 gem "sidekiq-cron", "~> 1.1"
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
