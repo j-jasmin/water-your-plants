@@ -54,3 +54,4 @@ services:
       WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
       PG_PASSWORD: password
 
+
